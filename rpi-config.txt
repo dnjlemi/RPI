@@ -1,0 +1,30 @@
+Raspberry P Setup for Thesis (Ok na to for updates lang kung need)
+1. sudo apt update / sudo apt upgrade / sudo apt install python3 / sudo apt install code // Install Python
+2. VSCode Install Python Extension / Config runtime argument > disable hardware acc = true
+3. sudo apt install libportaudiod Libportaudio2 libportaudiocppd portaudiols-dev flac
+4. pip install pyaudio requests websockets
+
+For Pip Installing
+1. pip install package_name --break-system-packages
+
+System
+Username:
+Password: password1234
+
+
+---------------------
+// Install Python
+sudo apt install python3
+sudo apt install code
+
+sudo apt-get update
+
+sudo apt install flac
+sudo apt-get install libportaudio-dev				// not working
+sudo apt-get install libportaudio2
+
+sudo apt-get install software-properties-common
+sudo apt-get update
+
+sudo apt install portaudio19-dev python3-pyaudio
+pip install pyaudio requests websockets
