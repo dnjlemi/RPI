@@ -9,6 +9,8 @@ sudo apt-get install libraspberrypi-dev
 sudo apt-get install xinput-calibrator
 
 git clone https://github.com/waveshare/LCD-show.git
+git clone https://github.com/marcin-chwedczuk/waveshare-35A-raspberry-pi-64-driver
+
 cd LCD-show
 nano LCD35-show
 // remove sudo reboot from the code (then ctrl+S and ctrl+x)
