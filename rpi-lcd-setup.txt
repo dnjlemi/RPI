@@ -1,21 +1,21 @@
-update time and date
+// Update Time and Date
 sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
 
-LATEST MOVE
+// Connecting 3.5inch LCD
 
 sudo apt update
 sudo apt upgrade
 sudo apt-get install libraspberrypi-dev
 sudo apt-get install xinput-calibrator
 
-git clone https://github.com/waveshare/LCD-show.git
+// git clone https://github.com/waveshare/LCD-show.git
 git clone https://github.com/marcin-chwedczuk/waveshare-35A-raspberry-pi-64-driver
 
-cd LCD-show
-nano LCD35-show
-// remove sudo reboot from the code (then ctrl+S and ctrl+x)
-sudo apt update
 sudo apt-get full-upgrade -y
 sudo apt --fix-broken install
 
+cd waveshare-35A-raspberry-pi-64-driver
+
 sudo ./LCD35-show
+
+sudo reboot
