@@ -1,0 +1,19 @@
+update time and date
+sudo date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+
+LATEST MOVE
+
+sudo apt update
+sudo apt upgrade
+sudo apt-get install libraspberrypi-dev
+sudo apt-get install xinput-calibrator
+
+git clone https://github.com/waveshare/LCD-show.git
+cd LCD-show
+nano LCD35-show
+// remove sudo reboot from the code (then ctrl+S and ctrl+x)
+sudo apt update
+sudo apt-get full-upgrade -y
+sudo apt --fix-broken install
+
+sudo ./LCD35-show
