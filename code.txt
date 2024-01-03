@@ -4,10 +4,10 @@ from gpiozero import LED
 from time import sleep
 import sounddevice
 
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
+#GPIO.setmode(GPIO.BOARD)
+#GPIO.setup(11, GPIO.OUT)
 
 
 alert = LED(17)
