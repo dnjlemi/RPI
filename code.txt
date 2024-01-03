@@ -1,0 +1,105 @@
+import speech_recognition as sr
+from datetime import date
+from gpiozero import LED
+from time import sleep
+import sounddevice
+
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT)
+
+
+alert = LED(17)
+r = sr.Recognizer()
+mic = sr.Microphone()
+
+print("hello")
+
+while True:
+    with mic as source:
+        audio = r.listen(source)
+    try:
+        words = r.recognize_google(audio)
+        print(words)
+    except sr.UnknownValueError:
+        words = "not recognised"
+        print(words)
+
+
+    if words == "fire":
+        print("1")
+        alert.on()
+        sleep(5)
+        print("2")
+        alert.off()
+    if words == "alarm":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "police":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "help":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "sunog":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "watch out":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()    
+    if words == "emergency":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "intruder":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "trouble":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "tulong":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "evacuate":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "hazard":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "slippery":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "danger":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
+    if words == "warning":
+        print("1")
+        alert.on()
+        sleep(5)
+        alert.off()
