@@ -1,0 +1,7 @@
+// Switching to LCD
+      cd waveshare-35A-raspberry-pi-64-driver
+      sudo ./LCD35-show
+
+// Switching to HDMI
+      cd waveshare-35A-raspberry-pi-64-driver
+      sudo ./HDMI-show
