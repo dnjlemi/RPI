@@ -1,0 +1,9 @@
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD) 	// so that we will use the board numbering instead of BCM
+GPIO.setup(11, GPIO.OUT)	// setting is as OUTPUT
+
+GPIO.output(11, True)		// turns on
+GPIO.output(11, False)		// turns off
+
+GPIO.cleanup()			// to reset
