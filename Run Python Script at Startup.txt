@@ -1,21 +1,9 @@
-sudo nano /etc/systemd/system/mygui.service
-
------------------------------------
-[Unit]
-Description=My GUI Script
-After=graphical.target
-
-[Service]
-ExecStart=/usr/bin/python3 /home/hp/Desktop/sample-GUI.py
-Restart=on-failure
-User=hp
-
-[Install]
-WantedBy=default.target
-
----------------------------
-sudo systemctl enable mygui.service
-
-sudo systemctl start mygui.service
-
-sudo systemctl status mygui.service
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+Name=<GUI Controller>
+Comment=
+Exec= python3 /home/hp/Desktop/sample-GUI.py
+StartupNotify=false
+Terminal=true
+Hidden=false
