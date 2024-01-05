@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Label, StringVar, font
+from tkinter import Label, StringVar, font, Button
 import vosk
 import pyaudio
 import time
@@ -50,6 +50,10 @@ class App:
         # Create and pack labels
         self.label = Label(root, textvariable=self.label_text, font=self.active_font, fg="black", bg="white")
         self.label.pack(pady=10)
+
+        # Add Exit button
+        exit_button = Button(root, text="Exit", command=root.destroy, font=("Helvetica", 16))
+        exit_button.pack(side=tk.BOTTOM, pady=10)
 
         self.root.after(100, self.listen_for_speech)
 
