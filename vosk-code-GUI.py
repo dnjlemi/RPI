@@ -19,11 +19,11 @@ vosk.SetLogLevel(-1)
 #     GPIO.output(11, False)  # Turn off
 
 # English model
-model_en = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-small-en-us-0.15")
+model_en = vosk.Model(r"/home/hp/Downloads/vosk-model-small-en-us-0.15")
 recognizer_en = vosk.KaldiRecognizer(model_en, 16000)
 
 # Filipino model
-model_ph = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-tl-ph-generic-0.6")
+model_ph = vosk.Model(r"/home/hp/Downloads/vosk-model-tl-ph-generic-0.6")
 recognizer_ph = vosk.KaldiRecognizer(model_ph, 16000)
 
 mic = pyaudio.PyAudio()
