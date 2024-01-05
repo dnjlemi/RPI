@@ -1,9 +1,21 @@
-python3 /home/hp/Desktop/sample-GUI.py
+sudo nano /etc/systemd/system/mygui.service
 
-sudo crontab -e
+-----------------------------------
+[Unit]
+Description=My GUI Script
+After=graphical.target
 
-select 1
+[Service]
+ExecStart=/usr/bin/python3 /home/hp/Desktop/sample-GUI.py
+Restart=on-failure
+User=hp
 
-(in the bottom)
+[Install]
+WantedBy=default.target
 
-@reboot python3 /home/hp/Desktop/sample-GUI.py &
+---------------------------
+sudo systemctl enable mygui.service
+
+sudo systemctl start mygui.service
+
+sudo systemctl status mygui.service
