@@ -1,4 +1,4 @@
-python3 /home/pi/Desktop/vosk-final.py
+python3 /home/hp/Desktop/sample-GUI.py
 
 sudo crontab -e
 
@@ -6,4 +6,4 @@ select 1
 
 (in the bottom)
 
-@reboot python3 /home/pi/Desktop/buzzer.py &
+@reboot python3 /home/hp/Desktop/sample-GUI.py &
