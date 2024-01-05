@@ -9,14 +9,14 @@ import threading
 vosk.SetLogLevel(-1)
 
 # Initialize GPIO
-# GPIO.setmode(GPIO.BOARD)
-# GPIO.setup(11, GPIO.OUT)
+ GPIO.setmode(GPIO.BOARD)
+ GPIO.setup(11, GPIO.OUT)
 
-# Function to control vibration
-# def vibrate(duration):
-#     GPIO.output(11, True)  # Turn on
-#     time.sleep(duration)   # Vibrate for specified duration
-#     GPIO.output(11, False)  # Turn off
+ Function to control vibration
+ def vibrate(duration):
+     GPIO.output(11, True)  # Turn on
+     time.sleep(duration)   # Vibrate for specified duration
+     GPIO.output(11, False)  # Turn off
 
 # English model
 model_en = vosk.Model(r"/home/hp/Downloads/vosk-model-small-en-us-0.15")
@@ -90,7 +90,7 @@ class App:
 
 # Initialize and run the GUI
 root = tk.Tk()
-root.geometry("480x320")  # Set the size to fit the 3.5-inch LCD Raspberry Pi screen
+root.geometry("640x480")  # Set the size to fit the 3.5-inch LCD Raspberry Pi screen
 root.configure(bg="white")
 
 app = App(root)
