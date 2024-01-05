@@ -1,0 +1,9 @@
+python3 /home/pi/Desktop/vosk-final.py
+
+sudo crontab -e
+
+select 1
+
+(in the bottom)
+
+@reboot python3 /home/pi/Desktop/buzzer.py &
