@@ -49,7 +49,8 @@ CHUNK = int(WIN_SIZE_SEC * RATE)
 
 
 # Define the target words
-target_words = ["fire", "alarm", "police", "help", "sunog", "watch out", "emergency", "intruder", "trouble", "tulong", "evacuate", "hazard", "slippery", "danger", "warning"]
+#target_words = ["fire", "alarm", "police", "help", "sunog", "watch out", "emergency", "intruder", "trouble", "tulong", "evacuate", "hazard", "slippery", "danger", "warning"]
+target_words = ["fire", "sunog", "hey", "uy", "run", "takbo", "wait", "hold on", "go", "police", "help", "look", "emergency", "intruder", "trouble", "tulong", "evacuate", "stop", "huwag", "magnanakaw", "danger", "warning"]
 
 # GUI
 class App:
