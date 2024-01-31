@@ -9,27 +9,29 @@ import pyaudio
 from keras_yamnet import params
 from keras_yamnet.yamnet import YAMNet, class_names
 from keras_yamnet.preprocessing import preprocess_input
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 # Set the logging level to suppress Vosk logs
 vosk.SetLogLevel(-1)
 
 # Initialize GPIO
-#GPIO.setmode(GPIO.BOARD)
-#GPIO.setup(31, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(31, GPIO.OUT)
 
 # Function to control vibration
 def vibrate(duration):
-    #GPIO.output(31, True)  # Turn on
+    GPIO.output(31, True)  # Turn on
     time.sleep(duration)   # Vibrate for specified duration
-    #GPIO.output(31, False)  # Turn off
+    GPIO.output(31, False)  # Turn off
     
 # English model
-model_en = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-small-en-us-0.15")
+# model_en = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-small-en-us-0.15")
+model_en = vosk.Model(r"/home/hp/Downloads/vosk-model-small-en-us-0.15")
 recognizer_en = vosk.KaldiRecognizer(model_en, 16000)
 
 # Filipino model
-model_ph = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-tl-ph-generic-0.6")
+model_ph = vosk.Model(r"/home/hp/Downloads/vosk-model-tl-ph-generic-0.6")
+# model_ph = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-tl-ph-generic-0.6")
 recognizer_ph = vosk.KaldiRecognizer(model_ph, 16000)
 
 #################### MODEL #####################
