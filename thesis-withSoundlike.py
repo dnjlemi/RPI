@@ -49,12 +49,24 @@ CHUNK = int(WIN_SIZE_SEC * RATE)
 
 # Define the target words and their sound-alike equivalents
 target_words = {
-    "fire": ["pyre", "by your", "far", "fight", "are you"],
+    "fire": ["pyre", "fat", "there", "here", "per", "pare","by your", "far", "fight", "are you"],
     "sunog": ["tunog", "bulldog", "so no", "look", "nog", "so", "who knows", "you know", "soon", "son", "smoke", "soak", "surog", "susog"], 
     "huwag": ["bug", "pug", "plug", "log", "bog", "what"],
-    "warning": ["warning", "karneng", "burning", "funding", "pandeng", "pending", "warn", "warren", "one", "winning", "learning", "neng"],
-    "magnanakaw": ["nanakaw", "the novel", "mag nakaw"],
-    "stop": ["stuff", "top", ]
+    "warning": ["warning", "karneng", "thing", "burning", "funding", "pandeng", "pending", "warn", "warren", "one", "winning", "learning", "neng"],
+    "magnanakaw": ["muggle", "takaw", "magna", "but", "none", "other","nanakaw", "nakaw", "maglaw", "the novel", "mag nakaw"],
+    "stop": ["stuff", "top", ],
+    "tulong": ["too long"],
+    "hey": ["hey"],
+    "uy": ["uy"],
+    "run": ["run"],
+    "takbo": ["takbo"],
+    "hold on": ["hold on"],
+    "police": ["police"],
+    "intruder": ["intruder"],
+    "emergency": ["emergency"],
+    "trouble": ["trouble"],
+    "evacuate": ["evacuate"],
+    "danger": ["danger"]
     # Add more target words and their sound-alike equivalents
 }
 
