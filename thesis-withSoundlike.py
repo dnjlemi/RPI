@@ -49,33 +49,33 @@ CHUNK = int(WIN_SIZE_SEC * RATE)
 
 # Define the target words and their sound-alike equivalents
 target_words = {
-    "fire": ["pyre", "fat", "per", "pare","by your", "far", "fight", "are you"],
-    "sunog": ["tunog", "bulldog", "so no", "nog", "so", "who knows", "you know", "soon", "son", "smoke", "soak", "surog", "susog"], 
-    "huwag": ["bug", "pug", "pag", "plug", "log", "bog", "what"],
-    "warning": ["warning", "karneng", "thing", "burning", "funding", "pandeng", "pending", "warn", "warren", "winning", "learning", "neng"],
-    "magnanakaw": ["muggle", "takaw", "magna", "none", "other","nanakaw", "nakaw", "maglaw", "the novel", "mag nakaw"],
-    "stop": ["stuff", "top", "sup"],
-    "tulong": ["too long", "gulong", "long", "pulong", "tulok"],
+    "fire": ["pyre","far"], #90% Accuracy
+    "sunog": ["tunog", "so no", "nog", "smoke", "surog", "susog"], #70%
+    "huwag": ["wag"], #70%
+    "warning": ["warning", "burning", "warn", "learning"], #60%
+    "magnanakaw": ["muggle","nanakaw", "nakaw", "mag nakaw"], #60%
+    "stop": ["stop"], #80%
+    "tulong": ["too long", "long", "pulong"], #80%
     #"hey": ["hey", "okay", "a"],
-    "uy": ["uy", "oil"],
-    "run": ["run", "fun", "prawn", "wrong", "rump", "from", "rum", "ron"],
-    "takbo": ["takbo", "tabok", "the book"],
-    "hold on": ["hold on", "put on", "doon"],
-    "police": ["police", "please"],
-    "intruder": ["intruder", "into the"],
-    "emergency": ["emergency", "immediately", "emily", "urgency", "agency"],
-    "trouble": ["trouble", "the well", "tuble", "tumor"],
+    # "uy": ["uy", "oil"],
+    "run": ["run", "rum", "ron"], #90%
+    "takbo": ["takbo", "tabok"], #80%
+    # "hold on": ["hold on", "put on", "doon"],
+    "police": ["police", "please"], # 100%
+    "intruder": ["intruder"], # 80%
+    "emergency": ["emergency", "emergent", "urgency", "agency", "emergence"], #70%
+    "trouble": ["trouble", "tuble", "tumor"],
     #"evacuate": ["evacuate", "acquit", ],
-    "danger": ["danger", "ranger", "anger", "they", "neither"],
-    "iwas": ["iwas", "he was"],
-    "ingat": ["ingat", "in got", "hinga", "he not"],
-    "wait": ["wait", "with", "great"],
-    "care": ["care", "ker", "air"],
-    "call": ["call", "cool", "cold"],
+    "danger": ["danger", "anger"], #80%
+    "iwas": ["iwas", "he was", "iwasan"], #70%
+    "ingat": ["ingat", "hinga"], #90%
+    "wait": ["wait"], # 100%
+    "care": ["care", "ker", "air"], #80%
+    "call": ["call", "cool"], #80%
     #20 words ^^
-    "alert": ["albert", "allergic"],
-    "alarm": ["alarma", "alam", "alan"],
-    "uy": ["uy", "oil"], 
+    "alert": ["alert"], #70%
+    "alarm": ["alarma", "alam"], #80%
+    "uy": ["uy"], #90%
     # Add more target words and their sound-alike equivalents
 }
 
