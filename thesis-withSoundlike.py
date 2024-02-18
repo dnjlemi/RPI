@@ -72,10 +72,18 @@ target_words = {
     "wait": ["wait"], # 100%
     "care": ["care", "ker", "air"], #80%
     "call": ["call", "cool"], #80%
-    #20 words ^^
     "alert": ["alert"], #70%
+    #20 words ^^
     "alarm": ["alarma", "alam"], #80%
-    "uy": ["uy"], #90%
+    "lindol": ["lindol"], #new
+    "saklolo": ["saklolo"], #new
+    "tabi": ["tabi"], #new
+    "excuse": ["excuse"], #new
+    "atras": ["atras"], #new
+    "abante": ["abante"], #new
+    "alis": ["alis"], #new
+    "tigil": ["tigil"], #new
+    "bilis": ["bilis"], #new
     # Add more target words and their sound-alike equivalents
 }
 
