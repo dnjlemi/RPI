@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import Label, StringVar, font, Button
-import vosk
 import pyaudio
 import time
 import threading
@@ -10,9 +9,11 @@ from keras_yamnet import params
 from keras_yamnet.yamnet import YAMNet, class_names
 from keras_yamnet.preprocessing import preprocess_input
 #import RPi.GPIO as GPIO
+import speech_recognition as sr
+from datetime import date
+from time import sleep
+import sounddevice
 
-# Set the logging level to suppress Vosk logs
-#vosk.SetLogLevel(-1)
 
 # Initialize GPIO
 #GPIO.setmode(GPIO.BOARD)
@@ -24,21 +25,13 @@ def vibrate(duration):
     time.sleep(duration)   # Vibrate for specified duration
     #GPIO.output(31, False)  # Turn off
 
-# English model
-#model_en = vosk.Model("/home/hp/Downloads/vosk-model-small-en-us-0.15")
-#model_en = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-small-en-us-0.15")
-#recognizer_en = vosk.KaldiRecognizer(model_en, 16000)
 
-# Filipino model
-#model_ph = vosk.Model("/home/hp/Downloads/vosk-model-tl-ph-generic-0.6")
-#model_ph = vosk.Model(r"C:\Users\hp\Downloads\Thesis Prototype\vosk-sr\vosk-model-tl-ph-generic-0.6")
-#recognizer_ph = vosk.KaldiRecognizer(model_ph, 16000)
-
-#################### MODEL #####################
+# Sound Recognition Model Initialization
 model = YAMNet(weights='keras_yamnet/yamnet.h5')
 yamnet_classes = class_names('keras_yamnet/yamnet_class_map.csv')
 plt_classes = [389, 11, 390, 349]  # Alarm Clock, Screaming, Siren, Doorbell
 
+# Microphone Settings for Speech Recognition
 mic = pyaudio.PyAudio()
 stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
 stream.start_stream()
@@ -48,45 +41,40 @@ RATE = params.SAMPLE_RATE
 CHUNK = int(WIN_SIZE_SEC * RATE)
 
 # Define the target words and their sound-alike equivalents
-target_words = {
-    "fire": ["pyre","far"], #90% Accuracy
-    "sunog": ["tunog", "so no", "nog", "smoke", "surog", "susog"], #70%
-    "huwag": ["wag"], #70%
-    "warning": ["warning", "burning", "warn", "learning"], #60%
-    "magnanakaw": ["muggle","nanakaw", "nakaw", "mag nakaw"], #60%
-    "stop": ["stop"], #80%
-    "tulong": ["too long", "long", "pulong"], #80%
-    #"hey": ["hey", "okay", "a"],
-    # "uy": ["uy", "oil"],
-    "run": ["run", "rum", "ron"], #90%
-    "takbo": ["takbo", "tabok"], #80%
-    # "hold on": ["hold on", "put on", "doon"],
-    "police": ["police", "please"], # 100%
-    "intruder": ["intruder"], # 80%
-    "emergency": ["emergency", "emergent", "urgency", "agency", "emergence"], #70%
-    "trouble": ["trouble", "tuble", "tumor"],
-    #"evacuate": ["evacuate", "acquit", ],
-    "danger": ["danger", "anger"], #80%
-    "iwas": ["iwas", "he was", "iwasan"], #70%
-    "ingat": ["ingat", "hinga"], #90%
-    "wait": ["wait"], # 100%
-    "care": ["care", "ker", "air"], #80%
-    "call": ["call", "cool"], #80%
-    "alert": ["alert"], #70%
+target_words = [
+    "fire",#90% Accuracy
+    "sunog", #70%
+    "pulis", #70%
+    "warning", #60%
+    "magnanakaw", #60%
+    "stop", #80%
+    "tulong", #80%
+    "run", #90%
+    "takbo", "tumakbo",
+    "police", # 100%
+    "intruder", # 80%
+    "emergency", #70%
+    "trouble",
+    "evacuate",
+    "danger", #80%
+    "iwas", #70%
+    "ingat", #90%
+    "call", #80%
+    "alert", #70%
     #20 words ^^
-    "alarm": ["alarma", "alam"], #80%
-    "lindol": ["lindol"], #new
-    "saklolo": ["saklolo"], #new
-    "tabi": ["tabi"], #new
-    "excuse": ["excuse"], #new
-    "atras": ["atras"], #new
-    "abante": ["abante"], #new
-    "alis": ["alis"], #new
-    "tigil": ["tigil"], #new
-    "bilis": ["bilis"], #new
+    "alarm", #80%
+    "lindol", #new
+    "saklolo", #new
+    "excuse", #new
+    "atras", #new
+    "abante", #new
+    "alis", #new
+    "tigil","tumigil",
+    "bilis", #new
+    "layo","lumayo",
+    "slippery",
     # Add more target words and their sound-alike equivalents
-}
-
+]
 
 # GUI
 class App:
@@ -132,7 +120,7 @@ class App:
             self.label_text.set(word)
             self.label.config(fg="white" if word in target_words else "yellow", bg="red")
             self.root.update()
-
+            #vibrate(3)
             # Use after method to schedule the update after a delay
             self.root.after(3000, self.reset_label)
 
@@ -144,8 +132,7 @@ class App:
     def listen_for_input(self):
         data = stream.read(8192)  # Increase buffer size
         if self.mode == "speech_to_text":
-            #self.listen_for_speech()
-            test = 0
+            self.listen_for_speech()
         elif self.mode == "sound_recognition":
             # Add code for sound recognition here
             self.listen_for_sound()
@@ -163,39 +150,22 @@ class App:
         self.speech_to_text_button.config(bg="red")
         self.sound_recognition_button.config(bg="green")
 
-    """ def listen_for_speech(self):
-        mic = pyaudio.PyAudio()
-        stream = mic.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8192)
-        stream.start_stream()
 
+    def listen_for_speech(self):
+        r = sr.Recognizer()
+        mic = sr.Microphone()
         while True:
-            data = stream.read(8192)
-
-            if recognizer_en.AcceptWaveform(data) or recognizer_ph.AcceptWaveform(data):
-                text_en = recognizer_en.Result()
-                text_ph = recognizer_ph.Result()
-                print(f"English: '{text_en[14:-3]}'")
-                print(f"Filipino: '{text_ph[14:-3]}'")
-                detected_words_en = self.find_matching_words(text_en)
-                detected_words_ph = self.find_matching_words(text_ph)
-
-                detected_words = detected_words_en + detected_words_ph  # Combine detected words from both models
-
-                self.flash_word(detected_words)
+            with mic as source:
+                audio = r.listen(source)
+            try:
+                words = r.recognize_google(audio)
+                print(words)
+                detected_words = [word for word in target_words if word in words]
+                if detected_words:
+                    self.flash_word(detected_words)
+            except sr.UnknownValueError:
+                words = "not recognised"
             break
-
-        stream.stop_stream()
-        stream.close()
-        mic.terminate()
-    """
-    def find_matching_words(self, text):
-        detected_words = []
-        for target_word, sound_alike_list in target_words.items():
-            for sound_alike in sound_alike_list:
-                if target_word in text or sound_alike in text:
-                    detected_words.append(target_word)
-                    break
-        return detected_words
 
     def listen_for_sound(self):
         mic = pyaudio.PyAudio()
