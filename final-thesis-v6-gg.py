@@ -8,7 +8,7 @@ import pyaudio
 from keras_yamnet import params
 from keras_yamnet.yamnet import YAMNet, class_names
 from keras_yamnet.preprocessing import preprocess_input
-#import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 import speech_recognition as sr
 from datetime import date
 from time import sleep
@@ -16,14 +16,14 @@ import sounddevice
 
 
 # Initialize GPIO
-#GPIO.setmode(GPIO.BOARD)
-#GPIO.setup(31, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(31, GPIO.OUT)
 
 # Function to control vibration
 def vibrate(duration):
-    #GPIO.output(31, True)  # Turn on
+    GPIO.output(31, True)  # Turn on
     time.sleep(duration)   # Vibrate for specified duration
-    #GPIO.output(31, False)  # Turn off
+    GPIO.output(31, False)  # Turn off
 
 
 # Sound Recognition Model Initialization
@@ -121,7 +121,7 @@ class App:
             self.label_text.set(word)
             self.label.config(fg="white" if word in target_words else "yellow", bg="red")
             self.root.update()
-            #vibrate(3)
+            vibrate(3)
             # Use after method to schedule the update after a delay
             self.root.after(3000, self.reset_label)
 
