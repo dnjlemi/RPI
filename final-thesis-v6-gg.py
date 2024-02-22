@@ -29,7 +29,7 @@ def vibrate(duration):
 # Sound Recognition Model Initialization
 model = YAMNet(weights='keras_yamnet/yamnet.h5')
 yamnet_classes = class_names('keras_yamnet/yamnet_class_map.csv')
-plt_classes = [389, 11, 390, 349]  # Alarm Clock, Screaming, Siren, Doorbell
+plt_classes = [389, 390, 349]  # Alarm Clock, Screaming, Siren, Doorbell
 
 # Microphone Settings for Speech Recognition
 mic = pyaudio.PyAudio()
